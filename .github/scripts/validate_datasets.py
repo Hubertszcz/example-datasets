@@ -12,6 +12,8 @@ import json
 from pathlib import Path
 from dataclasses import dataclass
 from typing import Any, Callable
+import re
+import os
 
 from frictionless import validate, Report, Error
 
@@ -167,14 +169,20 @@ def check_datapackage(dataset_path : Path) -> list[RuleReturn]:
 
 def extract_readme_image(dataset_path: Path) -> str | None:
     """Extracts the image path from the first line of the README if formatted correctly."""
+    image_path_embed_pattern = re.compile("(?<=^\s{0,10}<!--\s{0,10}Image:\s{0,10})(.+)<?=\s{0,10}-->\s{0,10}$)", re.IGNORECASE)
     readme_path = dataset_path / "README.md"
     if not readme_path.exists():
         return None
     try:
         with open(readme_path, "r", encoding="utf-8") as f:
-            first_line = f.readline().strip()
-            if first_line.startswith(""):
-                return first_line[11:-3].strip()
+            mtch = re.search(image_path_embed_pattern, f.readline().strip())
+            if not mtch:
+                return None
+            mtch = mtch.group(0)
+            image_path = dataset_path / Path(os.sep.join(mtch.split("/")))
+            if not image_path.exists():
+                return None
+            return f'/{image_path.relative_to(dataset_path.parent.parent.resolve())}'
     except Exception:
         pass
     return None
