@@ -34,43 +34,50 @@
   "contributors": [
     {
       "title": "Joe Bowden",
-      "role": "collector"
+      "role": "contributor"
     },
     {
       "title": "Jamie Warren",
-      "role": "collector"
+      "role": "contributor"
     },
     {
       "title": "Asger Svenning",
-      "role": "author"
+      "role": "contributor"
     },
     {
       "title": "Anna Viklund",
-      "role": "author"
+      "role": "contributor"
     }
   ],
   "licenses": [
     {
       "scope": "media",
-      "name": "CC-BY-4.0",
-      "path": "https://creativecommons.org/licenses/by/4.0/",
-      "title": "Creative Commons Attribution 4.0 International"
+      "name": "CC-BY-NC-4.0",
+      "path": "https://creativecommons.org/licenses/by-nc/4.0/",
+      "title": "Creative Commons Attribution-NonCommercial 4.0 International"
+    },
+    {
+      "scope": "data",
+      "name": "CC-BY-NC-4.0",
+      "path": "https://creativecommons.org/licenses/by-nc/4.0/",
+      "title": "Creative Commons Attribution-NonCommercial 4.0 International"
     }
   ],
   "project": {
     "title": "Antenna InsectAI Datathon",
     "samplingDesign": "experimental",
-    "captureMethod": "timeLapse",
+    "captureMethod": ["timeLapse"],
     "individualAnimals": false,
-    "observationLevel": "media"
+    "observationLevel": ["media"]
   },
   "spatial": {
     "type": "Polygon",
     "coordinates": [
       [
-        [49.01392, -57.59865],
-        [48.95317, -57.94739],
-        [45.47945, -74.30196]
+        [-57.59865, 49.01392],
+        [-57.94739, 48.95317],
+        [-74.30196, 45.47945],
+        [-57.59865, 49.01392]
       ]
     ]
   },
