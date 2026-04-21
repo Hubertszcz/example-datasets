@@ -62,9 +62,18 @@ def resolve_metadata_path() -> Path:
     return SOURCE_DIR / METADATA_FILENAME
 
 
-def copy_partitioned_files() -> Tuple[List[Path], List[Path]]:
+def stage_source_data_if_available() -> Tuple[List[Path], List[Path]]:
+    """
+    Optional staging step.
+
+    Preferred mode is to run from already-prepared `datasets/Mothbox/raw-data`
+    and `datasets/Mothbox/media`. If legacy source folder `Cerro_Hoya_Expedition`
+    exists, this function refreshes staged files from it.
+    """
     copied_media: List[Path] = []
     copied_json: List[Path] = []
+    if not SOURCE_DIR.exists():
+        return copied_media, copied_json
 
     for jpg in SOURCE_DIR.rglob("*.jpg"):
         rel = jpg.relative_to(SOURCE_DIR)
@@ -84,9 +93,10 @@ def copy_partitioned_files() -> Tuple[List[Path], List[Path]]:
 
     src_exports = SOURCE_DIR / "exports"
     dst_exports = RAW_DIR / "exports"
-    if dst_exports.exists():
-        shutil.rmtree(dst_exports)
-    shutil.copytree(src_exports, dst_exports)
+    if src_exports.exists():
+        if dst_exports.exists():
+            shutil.rmtree(dst_exports)
+        shutil.copytree(src_exports, dst_exports)
 
     src_meta = SOURCE_DIR / METADATA_FILENAME
     dst_meta = RAW_DIR / METADATA_FILENAME
@@ -299,34 +309,94 @@ def create_datapackage(row_counts: Dict[str, int]) -> None:
     (DATASET_DIR / "datapackage.json").write_text(json.dumps(datapackage, indent=2), encoding="utf-8")
 
 
+def build_unaccountedfor_columns(
+    deployments_columns: List[str], media_columns: List[str], observations_columns: List[str]
+) -> List[Dict[str, str]]:
+    output_columns = set(deployments_columns) | set(media_columns) | set(observations_columns)
+
+    metadata_cols = set(read_template_columns(RAW_DIR / METADATA_FILENAME))
+    metadata_equivalencies = {
+        "device": {"cameraModel", "cameraID"},
+        "device_name": {"cameraModel", "cameraID"},
+        "deploy_date": {"deploymentStart"},
+        "deployment_date": {"deploymentStart"},
+        "collect_date": {"deploymentEnd"},
+        "crew": {"setupBy"},
+        "notes": {"deploymentComments"},
+        "height_above_ground": {"cameraHeight"},
+        "deployment_name": {"deploymentID"},
+        "site": {"locationID", "locationName"},
+        "latitude": {"latitude"},
+        "longitude": {"longitude"},
+        "habitat": {"habitat"},
+    }
+    metadata_missing = sorted(
+        col
+        for col in metadata_cols
+        if col not in output_columns and not (col in metadata_equivalencies and metadata_equivalencies[col] & output_columns)
+    )
+
+    export_cols: set[str] = set()
+    for export_file in sorted((RAW_DIR / "exports").glob("*.csv")):
+        export_cols.update(read_template_columns(export_file))
+    export_equivalencies = {
+        "deployment": {"deploymentID"},
+        "occurrenceID": {"observationID", "mediaID"},
+        "eventID": {"eventID"},
+        "scientificName": {"scientificName"},
+        "filepath": {"filePath"},
+        "identifiedBy": {"classifiedBy", "classificationMethod"},
+        "width": {"bboxWidth"},
+        "height": {"bboxHeight"},
+        "eventDate": {"timestamp", "eventStart", "eventEnd"},
+        "eventTime": {"timestamp"},
+    }
+    export_missing = sorted(
+        col
+        for col in export_cols
+        if col not in output_columns and not (col in export_equivalencies and export_equivalencies[col] & output_columns)
+    )
+
+    max_len = max(len(metadata_missing), len(export_missing), 1)
+    rows: List[Dict[str, str]] = []
+    for idx in range(max_len):
+        rows.append(
+            {
+                "metadata": metadata_missing[idx] if idx < len(metadata_missing) else "",
+                "export": export_missing[idx] if idx < len(export_missing) else "",
+            }
+        )
+    return rows
+
+
 def main() -> None:
     deployments_columns = read_template_columns(DEPLOYMENTS_TEMPLATE)
     media_columns = read_template_columns(MEDIA_TEMPLATE)
     observations_columns = read_template_columns(OBSERVATIONS_TEMPLATE)
 
     ensure_clean_dirs()
-    copy_partitioned_files()
+    stage_source_data_if_available()
+
+    exports_dir = RAW_DIR / "exports"
+    if not exports_dir.exists():
+        raise FileNotFoundError(
+            f"Missing required exports directory: {exports_dir}. "
+            "Provide CSVs under datasets/Mothbox/raw-data/exports."
+        )
+    metadata_path = resolve_metadata_path()
+    if not metadata_path.exists():
+        raise FileNotFoundError(
+            f"Missing required metadata CSV: {metadata_path}. "
+            f"Provide {METADATA_FILENAME} under datasets/Mothbox/raw-data."
+        )
 
     metadata_records = parse_metadata()
     bbox_index = load_bbox_index()
-    export_files = sorted((RAW_DIR / "exports").glob("*.csv"))
+    export_files = sorted(exports_dir.glob("*.csv"))
 
     deployments_rows: Dict[str, Dict[str, str]] = {}
     media_rows: Dict[str, Dict[str, str]] = {}
     observations_rows: List[Dict[str, str]] = []
-    unaccounted_rows: List[Dict[str, str]] = []
-
-    used_export_fields = {
-        "deployment",
-        "occurrenceID",
-        "eventID",
-        "scientificName",
-        "eventDate",
-        "eventTime",
-        "filepath",
-        "identifiedBy",
-        "image_id",
-    }
     for export_file in export_files:
         with export_file.open("r", encoding="utf-8", newline="") as handle:
             reader = csv.DictReader(handle)
@@ -367,34 +437,6 @@ def main() -> None:
                     }
                     if md:
                         deployments_rows[deployment_id]["setupBy"] = md.values.get("crew", "")
-                    if md:
-                        mapped_metadata = {
-                            "deployment_name",
-                            "site",
-                            "device_name",
-                            "device",
-                            "deployment_date",
-                            "collect_date",
-                            "latitude",
-                            "longitude",
-                            "height_above_ground",
-                            "habitat",
-                            "notes",
-                            "crew",
-                        }
-                        for field, value in md.values.items():
-                            if field in mapped_metadata or not (value or "").strip():
-                                continue
-                            unaccounted_rows.append(
-                                {
-                                    "source_file": METADATA_FILENAME,
-                                    "source_row": deployment_id,
-                                    "source_field": field,
-                                    "source_value": value,
-                                    "mapped_table": "deployments",
-                                    "mapped_id": deployment_id,
-                                }
-                            )
 
                 patch_name = (row.get("occurrenceID") or "").strip()
                 media_id = Path(patch_name).stem if patch_name else fallback_id(
@@ -467,28 +509,13 @@ def main() -> None:
                         "observationComments": "",
                     }
                 )
-
-                for field, value in row.items():
-                    if field in used_export_fields or not (value or "").strip():
-                        continue
-                    unaccounted_rows.append(
-                        {
-                            "source_file": export_file.name,
-                            "source_row": str(idx),
-                            "source_field": field,
-                            "source_value": value,
-                            "mapped_table": "observations",
-                            "mapped_id": obs_id,
-                        }
-                    )
-
     deployments_count = write_csv(DATASET_DIR / "deployments.csv", deployments_columns, deployments_rows.values())
     media_count = write_csv(DATASET_DIR / "media.csv", media_columns, media_rows.values())
     observations_count = write_csv(DATASET_DIR / "observations.csv", observations_columns, observations_rows)
     write_csv(
         DATASET_DIR / "unaccountedfor.csv",
-        ["source_file", "source_row", "source_field", "source_value", "mapped_table", "mapped_id"],
-        unaccounted_rows,
+        ["metadata", "export"],
+        build_unaccountedfor_columns(deployments_columns, media_columns, observations_columns),
     )
     create_datapackage({"deployments": deployments_count, "media": media_count, "observations": observations_count})
     create_readme()
