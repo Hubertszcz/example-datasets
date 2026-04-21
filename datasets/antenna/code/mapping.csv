@@ -1,8 +1,7 @@
 src_field,dst_file,dst_field,notes
 id,observations.csv,observationID,
-event_id,observations.csv,eventID,
-,observations.csv,eventStart,Add to export
-,observations.csv,eventEnd,Add to export
+event_id,,,Cannot map
+event_name,,,Cannot map
 deployment_id,deployments.csv,deploymentID,
 deployment_id,observations.csv,deploymentID,
 deployment_id,media.csv,deploymentID,
@@ -20,19 +19,24 @@ verified_by,,,Cannot map
 participant_count,,,Cannot map
 agreed_with_algorithm,,,Cannot map
 agreed_with_user,,,Cannot map
-determination_matches_machine_prediction,,,
+determination_matches_machine_prediction,,,Cannot map
 detections_count,,,Cannot map
-first_appearance_timestamp,media.csv,timestamp,
-last_appearance_timestamp,,,Cannot map
+first_appearance_timestamp,observations.csv,eventStart,
+last_appearance_timestamp,observations.csv,eventEnd,
 duration,,,Cannot map
 best_detection_url,,,Cannot map
 best_detection_bbox,observations.csv,bboxX/bboxY,Has to be extracted from array
 best_detection_width,observations.csv,bboxWidth,
 best_detection_height,observations.csv,bboxHeight,
 best_detection_capture_url,media.csv,filePath,
-,,latitude,Add to export
-,,longitude,Add to export
-,,deploymentStart,Add to export
-,,deploymentEnd,Add to export
-,,mediaID,Add to export
-,,filePublic,Add to export
+,deployments.csv,latitude,Add to export
+,deployments.csv,longitude,Add to export
+,deployments.csv,deploymentStart,Add to export
+,deployments.csv,deploymentEnd,Add to export
+,observations.csv,mediaID,Add to export
+,media.csv,mediaID,Add to export
+,media.csv,timestamp,Add to export
+,observations.csv,filePublic,Hardcode to true
+,observations.csv,fileMediatype,"Hardcode to ""image"""
+,observations.csv,observationLevel,"Hardcode to ""media"""
+,observations.csv,observationType,"Hardcode to ""animal"""
