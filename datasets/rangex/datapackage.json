@@ -7,7 +7,7 @@
             "format": "csv",
             "mediatype": "text/csv",
             "encoding": "utf-8",
-            "schema": "https://raw.githubusercontent.com/tdwg/camtrap-dp/1.0/deployments-table-schema.json"
+            "schema": "https://raw.githubusercontent.com/tdwg/camtrap-dp/1.0.2/deployments-table-schema.json"
         },
         {
             "name": "media",
@@ -16,7 +16,7 @@
             "format": "csv",
             "mediatype": "text/csv",
             "encoding": "utf-8",
-            "schema": "https://raw.githubusercontent.com/tdwg/camtrap-dp/1.0/media-table-schema.json"
+            "schema": "https://raw.githubusercontent.com/tdwg/camtrap-dp/1.0.2/media-table-schema.json"
         },
         {
             "name": "observations",
@@ -25,15 +25,16 @@
             "format": "csv",
             "mediatype": "text/csv",
             "encoding": "utf-8",
-            "schema": "https://raw.githubusercontent.com/tdwg/camtrap-dp/1.0/observations-table-schema.json"
+            "schema": "https://raw.githubusercontent.com/tdwg/camtrap-dp/1.0.2/observations-table-schema.json"
         }
     ],
+    "profile": "https://raw.githubusercontent.com/tdwg/camtrap-dp/1.0.2/camtrap-dp-profile.json",
     "name": "rangex-coco-insectai-datathon",
-    "created": "2026-04-18T15:13:06.717789+00:00",
+    "created": "2026-04-21T13:39:13.916466+00:00",
     "contributors": [
         {
             "title": "Lorenzo Girotti",
-            "role": "author"
+            "role": "contact"
         }
     ],
     "licenses": [
@@ -42,14 +43,24 @@
             "name": "CC-BY-4.0",
             "path": "https://creativecommons.org/licenses/by/4.0/",
             "title": "Creative Commons Attribution 4.0 International"
+        },
+        {
+            "scope": "data",
+            "name": "CC-BY-4.0",
+            "path": "https://creativecommons.org/licenses/by/4.0/",
+            "title": "Creative Commons Attribution 4.0 International"
         }
     ],
     "project": {
         "title": "RangeX COCO InsectAI Datathon",
         "samplingDesign": "experimental",
-        "captureMethod": "timeLapse",
+        "captureMethod": [
+            "timeLapse"
+        ],
         "individualAnimals": false,
-        "observationLevel": "media"
+        "observationLevel": [
+            "media"
+        ]
     },
     "spatial": {
         "type": "Polygon",

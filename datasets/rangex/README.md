@@ -1,3 +1,4 @@
+<!-- Image: media/HE22_01_83_2037_2.jpg -->
 # 🐞 RangeX dataset (COCO format)
 
 <img src="media/HE22_01_83_2037_2.jpg" alt="RangeX example image" width="300"/>
@@ -33,3 +34,8 @@ To run the conversion scripts and work with these datasets, please set up a Pyth
    ```bash
    pip install -r requirements.txt
    ```
+
+## InsectAI Camtrap DP suggestions
+
+- not mentioned in the report yet, the `featureType` column in `deployments` should have different enum values, like `flower`, `soil`, `board` etc...
+- 
