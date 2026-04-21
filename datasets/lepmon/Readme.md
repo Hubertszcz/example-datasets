@@ -1,3 +1,4 @@
+<!-- Image: media/Lepmon#SN010030_TH_J_2025-07-02_T_2330.jpg -->
 # Sample dataset fromt the lepmon project
 
 <img src="media/Lepmon#SN010030_TH_J_2025-07-02_T_2330.jpg" alt="RangeX example image" width="300"/>
@@ -25,3 +26,4 @@ Alle files for the different tables in json and csv format:
 
 - Link to bbox url if present missing?
 - What about measurement values taken with each image, e.g. temperature, light conditions, etc.? 
+- Methods for capturing, processing?
