@@ -1,7 +1,8 @@
-<!-- Image: raw-data/diopsis_soortherkenning_AI _231_2022_08_05_00_30_44.png -->
+<!-- Image: raw-data/diopsis_soortherkenning_AI_231_2022_08_05_00_30_44.png -->
+
 # Diopsis example dataset
 
-<img src="raw-data/diopsis_soortherkenning_AI _231_2022_08_05_00_30_44.png" alt="Diopsis example image" width="300"/> <img src="raw-data/Diopsis_Camerading_in_bloemenveld_foto_Rotem_Zilber_1937204697.jpg" alt="Diopsis image" width="300"/>
+<img src="raw-data/diopsis_soortherkenning_AI_231_2022_08_05_00_30_44.png" alt="Diopsis example image" width="300"/> <img src="raw-data/Diopsis_Camerading_in_bloemenveld_foto_Rotem_Zilber_1937204697.jpg" alt="Diopsis image" width="300"/>
 
 
 This folder contains a subset of Diopsis recordings and annotations used in following study:
