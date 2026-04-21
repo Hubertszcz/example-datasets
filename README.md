@@ -23,12 +23,12 @@
 | [**flower_visitors**](/datasets/flower_visitors) | 🔴 Failed (1/5) | _No image tag found_ |
 | [**ias**](/datasets/ias) | 🟡 Almost (3/5) | <img src="datasets/ias/raw-data/20250613022959-snapshot.jpg" height="150"> |
 | [**insect-detect**](/datasets/insect-detect) | 🔴 Failed (1/5) | _No image tag found_ |
-| [**lepmon**](/datasets/lepmon) | 🟠 Partial (2/5) | _No image tag found_ |
+| [**lepmon**](/datasets/lepmon) | 🟢 Success (5/5) | <img src="datasets/lepmon/media/Lepmon%23SN010030_TH_J_2025-07-03_T_0308.jpg" height="150"> |
 | [**minimon**](/datasets/minimon) | 🟡 Almost (3/5) | <img src="datasets/minimon/media/E41990/20250614/E41990_20250614094103_0105_012989.jpg" height="150"> |
 | [**plant-pollinator-interactions**](/datasets/plant-pollinator-interactions) | 🔴 Failed (1/5) | _No image tag found_ |
 | [**rangex**](/datasets/rangex) | 🟢 Success (5/5) | <img src="datasets/rangex/media/HE22_01_83_2037_2.jpg" height="150"> |
 
-<!-- Last updated: 2026-04-21 10:10:43 UTC -->
+<!-- Last updated: 2026-04-21 10:12:12 UTC -->
 <!-- END: DATASET PROGRESS TABLE -->
 ---
 
