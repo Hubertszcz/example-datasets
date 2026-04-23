@@ -1,77 +1,68 @@
 {
+  "profile": "https://raw.githubusercontent.com/tdwg/camtrap-dp/1.0.2/camtrap-dp-profile.json",
   "name": "mothbox-cerro-hoya",
-  "created": "2026-04-21T16:41:15Z",
-  "contributors": [
+  "created": "2026-04-23T16:08:55Z",
+  "licenses": [
     {
-      "title": "Mothbox Team",
-      "role": "contact"
+      "scope": "data",
+      "name": "unknown",
+      "path": "",
+      "title": "Unknown"
     }
   ],
-  "project": {
-    "title": "Mothbox Cerro Hoya",
-    "samplingDesign": "experimental",
-    "captureMethod": [
-      "timeLapse"
-    ],
-    "individualAnimals": false,
-    "observationLevel": [
-      "media"
-    ]
-  },
-  "spatial": {
-    "type": "Polygon",
-    "coordinates": [
-      [
-        [
-          -80.7806,
-          7.32393
-        ],
-        [
-          -80.74752,
-          7.32393
-        ],
-        [
-          -80.74752,
-          7.3455
-        ],
-        [
-          -80.7806,
-          7.3455
-        ],
-        [
-          -80.7806,
-          7.32393
-        ]
-      ]
-    ]
-  },
-  "temporal": {
-    "start": "2025-01-26",
-    "end": "2025-01-29"
-  },
   "resources": [
     {
       "name": "deployments",
-      "path": "deployments.csv"
+      "path": "deployments.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "schema": "https://raw.githubusercontent.com/tdwg/camtrap-dp/1.0/deployments-table-schema.json",
+      "dialect": {
+        "csv": {
+          "header": true
+        }
+      },
+      "count": 1
     },
     {
       "name": "media",
-      "path": "media.csv"
+      "path": "media.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "schema": "https://raw.githubusercontent.com/tdwg/camtrap-dp/1.0/media-table-schema.json",
+      "dialect": {
+        "csv": {
+          "header": true
+        }
+      },
+      "count": 5471
     },
     {
       "name": "observations",
-      "path": "observations.csv"
+      "path": "observations.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "schema": "https://raw.githubusercontent.com/tdwg/camtrap-dp/1.0/observations-table-schema.json",
+      "dialect": {
+        "csv": {
+          "header": true
+        }
+      },
+      "count": 5471
     }
   ],
   "taxonomic": [
     {
-      "scientificName": "Agylla"
+      "scientificName": "Agylla1"
     },
     {
-      "scientificName": "Anarmodia"
-    },
-    {
-      "scientificName": "Antiblemma"
+      "scientificName": "Alticini7"
     },
     {
       "scientificName": "Araneae"
@@ -80,262 +71,151 @@
       "scientificName": "Archaeognatha"
     },
     {
-      "scientificName": "Argyria"
+      "scientificName": "Azochis gripusalis"
     },
     {
-      "scientificName": "Asturodes"
+      "scientificName": "Calonotos metallicus"
     },
     {
-      "scientificName": "Bostrichidae"
+      "scientificName": "Carabidae5"
     },
     {
-      "scientificName": "Cantharidae"
+      "scientificName": "Carabidae6"
     },
     {
-      "scientificName": "Carabidae"
+      "scientificName": "Chauliognathus cinguliventris"
     },
     {
-      "scientificName": "Cecharismena"
-    },
-    {
-      "scientificName": "Chrysomelidae"
+      "scientificName": "Chauliognathus decolor"
     },
     {
       "scientificName": "Coleoptera"
     },
     {
-      "scientificName": "Cosmopterosis"
+      "scientificName": "Coleoptera11"
     },
     {
-      "scientificName": "Crambidae"
+      "scientificName": "Coleoptera12"
     },
     {
-      "scientificName": "Curculionidae"
+      "scientificName": "Coleoptera24"
     },
     {
-      "scientificName": "Depressariidae"
+      "scientificName": "Coleoptera26"
     },
     {
-      "scientificName": "Dermaptera"
+      "scientificName": "Coleoptera27"
     },
     {
-      "scientificName": "Deuterollyta"
+      "scientificName": "Coleoptera28"
     },
     {
-      "scientificName": "Diabrotica"
+      "scientificName": "Coleoptera8"
+    },
+    {
+      "scientificName": "Coleoptera_unknown"
+    },
+    {
+      "scientificName": "Cosmosoma xanthosticta"
+    },
+    {
+      "scientificName": "Curculionidae12"
+    },
+    {
+      "scientificName": "Curculionidae6"
+    },
+    {
+      "scientificName": "Curculionidae7"
+    },
+    {
+      "scientificName": "Cyclocephala lunulata"
+    },
+    {
+      "scientificName": "Cyclocephala melanocephala"
+    },
+    {
+      "scientificName": "Diabrotica1"
+    },
+    {
+      "scientificName": "Diabroticina1"
+    },
+    {
+      "scientificName": "Diaphania costata"
     },
     {
       "scientificName": "Diptera"
     },
     {
-      "scientificName": "Dytiscidae"
+      "scientificName": "Disonycha glabrata"
     },
     {
-      "scientificName": "Elateridae"
+      "scientificName": "Dytiscidae1"
     },
     {
-      "scientificName": "Epimecis"
+      "scientificName": "ERROR"
     },
     {
-      "scientificName": "Erebidae"
+      "scientificName": "Elateridae2"
     },
     {
-      "scientificName": "Galasa"
-    },
-    {
-      "scientificName": "Geometridae"
+      "scientificName": "Eulepidotis juncida"
     },
     {
       "scientificName": "Hemiptera"
     },
     {
-      "scientificName": "Hymenomima"
-    },
-    {
       "scientificName": "Hymenoptera"
-    },
-    {
-      "scientificName": "Idaea"
     },
     {
       "scientificName": "Insecta"
     },
     {
+      "scientificName": "Lepasta bractea"
+    },
+    {
       "scientificName": "Lepidoptera"
     },
     {
-      "scientificName": "Macaria"
-    },
-    {
-      "scientificName": "Mantodea"
-    },
-    {
-      "scientificName": "Neuroptera"
-    },
-    {
-      "scientificName": "Nolidae"
-    },
-    {
-      "scientificName": "Oedemeridae"
-    },
-    {
-      "scientificName": "Orthocomotis"
+      "scientificName": "Macrodactylini1"
     },
     {
       "scientificName": "Orthoptera"
     },
     {
-      "scientificName": "Pelidnota"
-    },
-    {
-      "scientificName": "Phileurus"
-    },
-    {
-      "scientificName": "Platynota"
-    },
-    {
-      "scientificName": "Plecoptera"
-    },
-    {
       "scientificName": "Psocodea"
-    },
-    {
-      "scientificName": "Ptichodis"
-    },
-    {
-      "scientificName": "Pyralidae"
-    },
-    {
-      "scientificName": "Rejectaria"
     },
     {
       "scientificName": "Scarabaeidae"
     },
     {
-      "scientificName": "Silvanidae"
+      "scientificName": "Scolytinae1"
     },
     {
-      "scientificName": "Simena"
+      "scientificName": "Silini2"
     },
     {
-      "scientificName": "Stenoma"
+      "scientificName": "Spragueia dama"
     },
     {
-      "scientificName": "Tenebrionidae"
+      "scientificName": "Talara phaeella"
     },
     {
-      "scientificName": "Tesserocerus"
+      "scientificName": "Tenebrionoidea1"
     },
     {
-      "scientificName": "Toramus"
+      "scientificName": "Tenebrionoidea2"
+    },
+    {
+      "scientificName": "Tesserocerus1"
+    },
+    {
+      "scientificName": "Toramus1"
     },
     {
       "scientificName": "Trichoptera"
     },
     {
-      "scientificName": "Trichromia"
-    },
-    {
-      "scientificName": "Trogossitidae"
-    },
-    {
-      "scientificName": "Uraniidae"
-    },
-    {
-      "scientificName": "Walterianella"
-    },
-    {
-      "scientificName": "amicalis"
-    },
-    {
-      "scientificName": "aurulentus"
-    },
-    {
-      "scientificName": "bractea"
-    },
-    {
-      "scientificName": "carbonifer"
-    },
-    {
-      "scientificName": "cinguliventris"
-    },
-    {
-      "scientificName": "consimilis"
-    },
-    {
-      "scientificName": "costata"
-    },
-    {
-      "scientificName": "dama"
-    },
-    {
-      "scientificName": "decolor"
-    },
-    {
-      "scientificName": "dohrni"
-    },
-    {
-      "scientificName": "glabrata"
-    },
-    {
-      "scientificName": "gripusalis"
-    },
-    {
-      "scientificName": "haemorrhoidalis"
-    },
-    {
-      "scientificName": "hinna"
-    },
-    {
-      "scientificName": "juncida"
-    },
-    {
-      "scientificName": "leucoplagalis"
-    },
-    {
-      "scientificName": "lunulata"
-    },
-    {
-      "scientificName": "melanocephala"
-    },
-    {
-      "scientificName": "memor"
-    },
-    {
-      "scientificName": "metallicus"
-    },
-    {
-      "scientificName": "munitalis"
-    },
-    {
-      "scientificName": "phaeella"
-    },
-    {
-      "scientificName": "pusillidactylus"
-    },
-    {
-      "scientificName": "rubedinaria"
-    },
-    {
-      "scientificName": "salaconalis"
-    },
-    {
-      "scientificName": "schausi"
-    },
-    {
-      "scientificName": "trichops"
-    },
-    {
-      "scientificName": "umbelularia"
-    },
-    {
-      "scientificName": "violescens"
-    },
-    {
-      "scientificName": "walkeri"
-    },
-    {
-      "scientificName": "xanthosticta"
+      "scientificName": "Uranophora walkeri"
     }
   ]
 }

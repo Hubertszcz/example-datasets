@@ -481,8 +481,11 @@ def main() -> None:
                         fallback_bh = ""
                 fallback_bx = ""
                 fallback_by = ""
+                name_value = (row.get("name") or "").strip()
+                if not name_value:
+                    name_value = (row.get("scientificName") or "").strip()
                 obs_id = (row.get("occurrenceID") or "").strip() or fallback_id(
-                    "obs", media_id, row.get("scientificName", ""), row.get("eventID", "")
+                    "obs", media_id, name_value, row.get("eventID", "")
                 )
                 observations_rows.append(
                     {
@@ -495,7 +498,7 @@ def main() -> None:
                         "observationLevel": "media",
                         "observationType": "machine_observation",
                         "cameraSetupType": "",
-                        "scientificName": (row.get("scientificName") or "").strip(),
+                        "scientificName": name_value,
                         "count": "",
                         "lifeStage": "",
                         "sex": "",
