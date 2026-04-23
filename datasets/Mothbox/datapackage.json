@@ -1,27 +1,22 @@
 {
-  "profile": "https://raw.githubusercontent.com/tdwg/camtrap-dp/1.0.2/camtrap-dp-profile.json",
   "name": "mothbox-cerro-hoya",
   "created": "2026-04-21T16:41:15Z",
   "contributors": [
     {
       "title": "Mothbox Team",
-      "role": "author"
-    }
-  ],
-  "licenses": [
-    {
-      "scope": "media",
-      "name": "CC-BY-4.0",
-      "path": "https://creativecommons.org/licenses/by/4.0/",
-      "title": "Creative Commons Attribution 4.0 International"
+      "role": "contact"
     }
   ],
   "project": {
     "title": "Mothbox Cerro Hoya",
     "samplingDesign": "experimental",
-    "captureMethod": "timeLapse",
+    "captureMethod": [
+      "timeLapse"
+    ],
     "individualAnimals": false,
-    "observationLevel": "media"
+    "observationLevel": [
+      "media"
+    ]
   },
   "spatial": {
     "type": "Polygon",
@@ -57,30 +52,15 @@
   "resources": [
     {
       "name": "deployments",
-      "path": "deployments.csv",
-      "profile": "tabular-data-resource",
-      "format": "csv",
-      "mediatype": "text/csv",
-      "encoding": "utf-8",
-      "schema": "https://raw.githubusercontent.com/tdwg/camtrap-dp/1.0/deployments-table-schema.json"
+      "path": "deployments.csv"
     },
     {
       "name": "media",
-      "path": "media.csv",
-      "profile": "tabular-data-resource",
-      "format": "csv",
-      "mediatype": "text/csv",
-      "encoding": "utf-8",
-      "schema": "https://raw.githubusercontent.com/tdwg/camtrap-dp/1.0/media-table-schema.json"
+      "path": "media.csv"
     },
     {
       "name": "observations",
-      "path": "observations.csv",
-      "profile": "tabular-data-resource",
-      "format": "csv",
-      "mediatype": "text/csv",
-      "encoding": "utf-8",
-      "schema": "https://raw.githubusercontent.com/tdwg/camtrap-dp/1.0/observations-table-schema.json"
+      "path": "observations.csv"
     }
   ],
   "taxonomic": [
