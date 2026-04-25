@@ -1,8 +1,6 @@
-# Notes
+# Description
 
-* camtrap-package (GitLab)
-* Tools section twdg documentation
-* Make issue on camtrap or write to Karolina
+A fully reproducible example of the conversion from a data dump from the internal IAS (Invasive Alien Species) database to Camtrap DP 1.0.2 using the [`trap-schema`]() package.
 
 # Setup
 
