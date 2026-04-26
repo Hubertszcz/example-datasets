@@ -12,8 +12,20 @@ dependencies = [
     "pyarrow>=23.0.1",
     "requests>=2.33.1",
     "seaborn>=0.13.2",
-    "frictionless",
+    "geojson",
+    "frictionless[parquet]",
     "PyYAML",
     "ipywidgets",
     "tqdm",
+    "trap-schema>=0.1.1",
 ]
+
+
+[tool.ruff]
+target-version = "py313"
+line-length = 140
+
+[tool.ruff.lint]
+# E: pycodestyle, F: Pyflakes, UP: pyupgrade, I: isort (sorts imports cleanly)
+select = ["E", "F", "UP", "I"]
+

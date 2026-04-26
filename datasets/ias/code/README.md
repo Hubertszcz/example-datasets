@@ -1,3 +1,7 @@
+# Description
+
+A fully reproducible example of the conversion from a data dump from the internal IAS (Invasive Alien Species) database to Camtrap DP 1.0.2 using the [`trap-schema`]() package.
+
 # Setup
 
 This example uses `uv` and **Python 3.13+**.
