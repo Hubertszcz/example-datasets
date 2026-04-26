@@ -266,7 +266,6 @@ def main():
     if args.format == "json":
         print(json.dumps(checks))
     else:
-        print(checks)
         for ds, rule_results in checks.items():
             print(f"\nDataset: {ds}")
             image = rule_results["image"]
