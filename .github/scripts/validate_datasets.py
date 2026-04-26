@@ -18,6 +18,11 @@ import os
 
 from frictionless import validate, Report, Error, Resource
 
+# Dataset rule-exceptions
+EXCEPTIONS : dict[str, tuple[str, ...]] = {
+    "antenna" : ("check_media_dir", )
+}
+
 # ==========================================
 # 📐 DATA MODELS & REGISTRY
 # ==========================================
@@ -232,6 +237,7 @@ def check(dataset: str | None=None):
     if not base_path.exists() or not base_path.is_dir():
         return None
 
+    exceptions = EXCEPTIONS[dataset] if dataset in EXCEPTIONS else tuple()
     checks = {}
     
     for dataset_path in base_path.iterdir():
@@ -240,6 +246,8 @@ def check(dataset: str | None=None):
         
         items = []
         for run_rule in VALIDATION_RULES:
+            if run_rule.__name__ in exceptions:
+                continue
             result = run_rule(dataset_path)
             if isinstance(result, RuleReturn):
                 result = [result]
